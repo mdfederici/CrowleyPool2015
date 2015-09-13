@@ -1,0 +1,168 @@
+@import domain.{User, Week}
+
+@(user: User, currentWeek: Week)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Crowley Pool 2015</title>
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" href="@routes.Assets.at("styles/main.css")">
+        <link rel="stylesheet" href="@routes.Assets.at("styles/logos.css")">
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/css/lightness/jquery-ui-1.10.2.custom.min.css" rel="stylesheet">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+
+        <style type="text/css">
+            .ui-state-active {
+                background: greenyellow !important;
+            }
+        </style>
+
+        <script type="text/javascript">
+            $(function() {
+                $( ".pick-list" ).sortable({
+                    items: "li:not(.ui-state-disabled)",
+                    update: function(e, ui) {
+                        var elementIndex = ui.item.index();
+                        var confidence = 16 - elementIndex;
+                        var game = ui.item.data('game');
+                        var allListElements = $('.pick-list li');
+
+                        UpdateFixedConfidencePicks(allListElements, elementIndex, confidence)
+                        UpdateConfidenceLabels(allListElements);
+                        UpdateConfidence(game, confidence);
+                    }
+                });
+
+                $('.pick-list li').disableSelection();
+
+                $('.pick-draggable').each(function() {
+                    $(this).buttonset();
+                });
+
+                $('.pick-radio').each(function() {
+                    $(this).button({
+                        icons: {
+                            primary: 'logo-image logo-' + $(this).data('logo')
+                        },
+                        text: false
+                     });
+                 });
+            });
+
+            function UpdateFixedConfidencePicks(allListElements, elementIndex, confidence) {
+                allListElements.each(function() {
+                    var fixedConfidence = $(this).data('fixedconfidence');
+
+                    if(!($.type(fixedConfidence) === 'undefined')){
+                        var oldIndex = 16 - parseInt(fixedConfidence);
+
+                        console.log('element has fixed confidence with indices ' + oldIndex + ' vs ' + elementIndex + ' which is confidence ' + confidence);
+
+                        if(elementIndex < oldIndex) {
+                            console.log('element must be moved down to its spot');
+                            $(this).insertAfter($(this).next());
+                        } else if(elementIndex > oldIndex) {
+                            console.log('element must be moved up to its spot');
+                            $(this).insertBefore($(this).prev());
+                        } else {
+                            console.log('element must stay where it is')
+                        }
+                    }
+                });
+            }
+
+            function UpdateConfidenceLabels(allListElements) {
+                allListElements.each(function() {
+                    var elementIndex = $(this).index();
+                    var confidence = 16 - elementIndex;
+                    $(this).data('confidence', confidence)
+                    $(this).find('.pick-confidence-marker').each(function(index, element) {
+                        $(element).html('(' + confidence + ')');
+                    })
+                });
+            }
+
+            function UpdateConfidence(game, confidence) {
+                $.ajax({
+                   url: '/updatePickConfidence?gameShortString=' + game + '&week=@{currentWeek.number}&confidence=' + confidence,
+                   error: function() {
+                      console.log('error!')
+                      $('#error').append('<p>An error has occurred. Please refresh you browser.</p>');
+                   },
+                   type: 'GET'
+                });
+            }
+
+            function UpdateWinner(game, winner) {
+                $.ajax({
+                   url: '/updatePickWinner?gameShortString=' + game + '&week=@{currentWeek.number}&winner=' + winner,
+                   error: function() {
+                      console.log('error!')
+                      $('#error').append('<p>An error has occurred. Please refresh you browser.</p>');
+                   },
+                   type: 'GET'
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            Make your picks @user!
+            <div id="error" style="color:red"></div>
+
+            <ul class="pick-list">
+                @for(pick <- user.picks(currentWeek).toSeq.sortBy(p => p.confidence.rating).reverse) {
+                    @if(pick.isLocked) {
+                        <li class="ui-state-default ui-state-disabled" data-fixedconfidence="@(pick.confidence.rating)" data-game="@(pick.game.shortString)" data-confidence="@(pick.confidence.rating)">
+                    } else {
+                        <li class="ui-state-default" data-game="@(pick.game.shortString)" data-confidence="@(pick.confidence.rating)">
+                    }
+                        <div class="pick-draggable">
+                            <span style="margin-right:25px;"><b class="pick-confidence-marker">(@pick.confidence.rating)</b></span>
+                            <input class="pick-radio"
+                                    type="radio"
+                                    @if(pick.selectedTeam == pick.game.awayTeam) { checked="checked" }
+                                    id="radio-@(pick.game.awayTeam.abbreviation)"
+                                    name="radio-@(pick.game.awayTeam.abbreviation)-@(pick.game.homeTeam.abbreviation)"
+                                    data-logo="@pick.game.awayTeam.abbreviation"
+                                    @if(pick.isLocked) {
+                                        disabled="disabled"
+                                    } else {
+                                        onclick="UpdateWinner('@pick.game.shortString', '@pick.game.awayTeam.abbreviation')"
+                                    }
+                            />
+                            <label class="pick-label" for="radio-@(pick.game.awayTeam.abbreviation)">@pick.game.awayTeam.abbreviation</label>
+
+                                &nbsp;&nbsp;@pick.game&nbsp;&nbsp;
+
+                            <input class="pick-radio"
+                                    type="radio"
+                                    @if(pick.selectedTeam == pick.game.homeTeam) { checked="checked" }
+                                    id="radio-@(pick.game.homeTeam.abbreviation)"
+                                    name="radio-@(pick.game.awayTeam.abbreviation)-@(pick.game.homeTeam.abbreviation)"
+                                    data-logo="@pick.game.homeTeam.abbreviation"
+                                    @if(pick.isLocked) {
+                                        disabled="disabled"
+                                    } else {
+                                        onclick="UpdateWinner('@pick.game.shortString', '@pick.game.homeTeam.abbreviation')"
+                                    }
+                            />
+                            <label class="pick-label" for="radio-@(pick.game.homeTeam.abbreviation)">@pick.game.homeTeam.abbreviation</label>
+                            <span style="margin-left:25px;"><b class="pick-confidence-marker">(@pick.confidence.rating)</b></span>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </body>
+</html>
