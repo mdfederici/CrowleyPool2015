@@ -31,7 +31,8 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
 
   def mobileWeekPicks() = Action { request =>
     standardAction(request.session, (currentUser) => {
-      Ok(views.html.mobileweekpicks(currentUser, Week.currentWeek))
+      val weekNumber = Week.currentWeek.number + 1 //note: always want to pick for next week
+      Ok(views.html.mobileweekpicks(currentUser, Week.getWeek(weekNumber)))
     })
   }
 
