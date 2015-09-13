@@ -1,0 +1,19 @@
+@(failedLogin: String)
+
+@main {
+    <script type="text/javascript">
+        function attemptlogin() {
+            this.document.location.href = '/attemptLogin?username=' + $('#username').val() + '&password=' + $('#password').val()
+        }
+    </script>
+
+    @if(failedLogin != null) {
+        <div id="error" style="color:red">@failedLogin</div>
+    }
+
+    <div>
+        <label for="username">Username:</label><input type="text" id="username" /><br/>
+        <label for="password">Password:</label><input type="password" id="password" /><br/>
+        <input type="button" value="Login" onclick="attemptlogin()"/>
+    </div>
+}

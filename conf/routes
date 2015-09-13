@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                controllers.ApplicationController.index
+GET         /seasonSummary                   controllers.ApplicationController.seasonSummary
+GET         /weekSummaryRouter               controllers.ApplicationController.weekSummaryRouter(week: Int)
+GET         /weekSummary                     controllers.ApplicationController.weekSummary(week: Int)
+GET         /weekPicks                       controllers.ApplicationController.weekPicks(week: Int)
+GET         /updatePickWinner                controllers.ApplicationController.updatePickWinner(gameShortString: String, week: Int, winner: String)
+GET         /updatePickConfidence            controllers.ApplicationController.updatePickConfidence(gameShortString: String, week: Int, confidence: Int)
+GET         /attemptLogin                    controllers.ApplicationController.attemptLogin(username: String, password: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                    controllers.Assets.at(path="/public", file)
+GET         /webjars/*file                   controllers.WebJarAssets.at(file)

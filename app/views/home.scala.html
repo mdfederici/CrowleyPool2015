@@ -1,0 +1,106 @@
+@import domain.{Game, Week}
+@import logic.{StandingsCalculator, TableUtilities}
+@(users: Set[domain.User], currentWeek: Week)
+
+@main {
+    <div class="grid center">
+        <div class="col large-3">
+            <table class="table is-striped has-hover table-height-logoscore">
+                <thead>
+                    <tr>
+                        <th class="table-height-fixedheader">User</th>
+                        <th class="table-height-fixedheader">Wins</th>
+                        <th class="table-height-fixedheader">Losses</th>
+                        <th class="table-height-fixedheader">Win Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>
+                    @for(i: Int <- sortedUsers.indices) {
+                        @defining(sortedUsers(i)) { user =>
+                            <tr>
+                                <td class="@TableUtilities.inTheMoney(i)">@user</td>
+                                <td>@user.metaData.wins(Some(currentWeek))</td>
+                                <td>@user.metaData.losses(Some(currentWeek))</td>
+                                <td>
+                                    @{
+                                        val formattedWinPercentage = f"${user.metaData.winPercentage(Some(currentWeek))}%1.3f"
+                                        formattedWinPercentage
+                                    }%
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-scrollable col large-6">
+            <table class="table is-striped has-hover table-height-logoscore">
+                <thead>
+                    <tr>
+                        @for(game <- Game.getGames(currentWeek)){
+                            <th class="table-height-fixedheader">@game.shortString</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>
+                    @for(i: Int <- sortedUsers.indices) {
+                        @defining(sortedUsers(i)) { user =>
+                            <tr>
+                                @for(game <- Game.getGames(currentWeek)){
+                                    @defining(user.picks(currentWeek).find(x => x.game.shortString == game.shortString)) { pick =>
+                                        @if(pick.isEmpty) {
+                                            <td>0</td>
+                                        } else {
+                                            @if(pick.get.game.winner.isEmpty){
+                                                <td><img src="@routes.Assets.at(pick.get.selectedTeam.logoPath)" alt="@pick.get.selectedTeam.abbreviation" class="logo-small">@pick.get.confidence.rating</td>
+                                            } else {
+                                                <td class="@if(pick.get.isWinner.get){ pick-correct } else { pick-incorrect }">
+                                                    <img src="@routes.Assets.at(pick.get.selectedTeam.logoPath)" alt="@pick.get.selectedTeam.abbreviation" class="logo-small">
+                                                    @pick.get.confidence.rating
+                                                </td>
+                                            }
+                                        }
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col large-3">
+            <table class="table is-striped has-hover table-height-logoscore">
+                <thead>
+                    <tr>
+                        <th class="table-height-fixedheader">Week @(currentWeek.number) Points</th>
+                        <th class="table-height-fixedheader">Week @(currentWeek.number) Potential Points Remaining</th>
+                        <th class="table-height-fixedheader">Current Total Points</th>
+                        <th class="table-height-fixedheader">Current Distance From Leader</th>
+                        <th class="table-height-fixedheader">Current Distance From Predecessor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>
+                    @for(i: Int <- sortedUsers.indices) {
+                        @defining(sortedUsers(i)) { user =>
+                            <tr>
+                                <td class="js-tooltip" data-tooltip="@user.record(Some(currentWeek))">@user.metaData.pointsEarned(Some(currentWeek))</td>
+                                <td>@user.metaData.potentialPointsRemaining(Some(currentWeek))</td>
+                                <td class="js-tooltip" data-tooltip="@user.record()">@user.metaData.pointsEarned()</td>
+                                <td>@StandingsCalculator.distanceFromLeader(user, users)</td>
+                                <td>@StandingsCalculator.distanceFromPredecessor(user, users)</td>
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

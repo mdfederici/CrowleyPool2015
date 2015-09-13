@@ -1,0 +1,70 @@
+body {
+    padding-top: 50px;
+}
+
+.vertical-divider {
+    width: 10px;
+    background-color: #e5e5e5;
+}
+
+.center {
+    text-align: center;
+}
+
+.inmoney-gold {
+    background-color: gold;
+}
+.inmoney-silver {
+    background-color: silver;
+}
+.inmoney-bronze {
+    background-color: darkgoldenrod;
+}
+
+.table-cursor-default tbody tr td {
+    cursor: default;
+}
+
+.table-scrollable {
+    overflow-x: scroll;
+}
+
+.table-height-fixedheader {
+    height: 100px;
+    vertical-align: middle !important;
+}
+
+.table-height-logoscore tbody tr {
+    height: 70px;
+}
+
+.pick-correct {
+    background-color: rgba(32, 138, 0, 0.50);
+}
+
+.pick-incorrect {
+    background-color: rgba(231, 0, 8, 0.50);
+}
+
+.logo-small {
+    height: 30px;
+}
+
+.pick-list {
+list-style-type: none;
+text-align: center;
+cursor: default;
+}
+
+.pick-label {
+    height: 50px !important;
+    width: 75px !important;
+}
+
+.logo-image {
+    background-size: 80% 80%;
+    width: 60px !important;
+    height: 60px !important;
+    margin-left: -24px !important;
+    margin-top: -24px !important;
+}
