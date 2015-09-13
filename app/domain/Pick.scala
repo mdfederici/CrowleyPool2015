@@ -54,10 +54,8 @@ class Pick(g: Game,
       return true
 
     val week = Game.getWeek(game)
-//    val lockDateTime = DateCalculator.calculateThursdayLockTime(week)
-
 //    println(s"checking if $game in $week is locked")
-//    println(s"go lock time of $lockDateTime which is after ${CrowleyDateTime.now}:${lockDateTime.isAfter(CrowleyDateTime.now)}")
+//    println(s"go lock time of ${week.lockDateTime} which is after ${CrowleyDateTime.now}:${week.lockDateTime.isAfter(CrowleyDateTime.now)}")
 
     week.lockDateTime match {
       case k if k.isAfter(CrowleyDateTime.now) => false
