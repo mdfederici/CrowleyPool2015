@@ -29,6 +29,12 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
     })
   }
 
+  def mobileWeekPicks() = Action { request =>
+    standardAction(request.session, (currentUser) => {
+      Ok(views.html.mobileweekpicks(currentUser, Week.currentWeek))
+    })
+  }
+
   def weekSummaryRouter(week: Int) = Action { request =>
     standardAction(request.session, (currentUser) => {
       val targetWeek = Week.getWeek(week)

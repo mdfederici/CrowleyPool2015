@@ -11,6 +11,7 @@ GET         /weekPicks                       controllers.ApplicationController.w
 GET         /updatePickWinner                controllers.ApplicationController.updatePickWinner(gameShortString: String, week: Int, winner: String)
 GET         /updatePickConfidence            controllers.ApplicationController.updatePickConfidence(gameShortString: String, week: Int, confidence: Int)
 GET         /attemptLogin                    controllers.ApplicationController.attemptLogin(username: String, password: String)
+GET         /mobile                          controllers.ApplicationController.mobileWeekPicks
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                    controllers.Assets.at(path="/public", file)

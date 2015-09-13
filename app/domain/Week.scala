@@ -15,6 +15,11 @@ object Week {
     Week.allWeeks.find(x => x.number == weekNumber).getOrElse(throw new Exception(s"Could not find week $weekNumber. Valid weeks are week 1 - week 17."))
   }
 
+  def currentWeek: Week = {
+    Week.allWeeks.filter(x => x.tuesdayStart.isBefore(CrowleyDateTime.now.toLocalDate) || x.tuesdayStart.isEqual(CrowleyDateTime.now.toLocalDate))
+                                            .sortBy(x => x.number).reverse.head
+  }
+
   val Week1: Week = Week(1, LocalDate.of(2015, 9, 8))
   val Week2: Week = Week(2, LocalDate.of(2015, 9, 15))
   val Week3: Week = Week(3, LocalDate.of(2015, 9, 22))
