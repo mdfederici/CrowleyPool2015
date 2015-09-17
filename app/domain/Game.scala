@@ -126,18 +126,18 @@ object Game {
     new Game(Team.Seahawks, Team.Rams, LocalDateTime.of(2015, 9, 13, 13, 0), Some(Team.Rams), Some(31), Some(34)),
 
     //4pm games
-    new Game(Team.Saints, Team.Cardinals, LocalDateTime.of(2015, 9, 13, 16, 5)),
-    new Game(Team.Lions, Team.Chargers, LocalDateTime.of(2015, 9, 13, 16, 5)),
-    new Game(Team.Titans, Team.Buccaneers, LocalDateTime.of(2015, 9, 13, 16, 25)),
-    new Game(Team.Bengals, Team.Raiders, LocalDateTime.of(2015, 9, 13, 16, 25)),
-    new Game(Team.Ravens, Team.Broncos, LocalDateTime.of(2015, 9, 13, 16, 25)),
+    new Game(Team.Saints, Team.Cardinals, LocalDateTime.of(2015, 9, 13, 16, 5), Some(Team.Cardinals), Some(19), Some(31)),
+    new Game(Team.Lions, Team.Chargers, LocalDateTime.of(2015, 9, 13, 16, 5), Some(Team.Chargers), Some(28), Some(33)),
+    new Game(Team.Titans, Team.Buccaneers, LocalDateTime.of(2015, 9, 13, 16, 25), Some(Team.Titans), Some(42), Some(14)),
+    new Game(Team.Bengals, Team.Raiders, LocalDateTime.of(2015, 9, 13, 16, 25), Some(Team.Bengals), Some(33), Some(13)),
+    new Game(Team.Ravens, Team.Broncos, LocalDateTime.of(2015, 9, 13, 16, 25), Some(Team.Broncos), Some(13), Some(19)),
 
     //Sunday Night game
-    new Game(Team.Giants, Team.Cowboys, LocalDateTime.of(2015, 9, 13, 20, 30)),
+    new Game(Team.Giants, Team.Cowboys, LocalDateTime.of(2015, 9, 13, 20, 30), Some(Team.Cowboys), Some(26), Some(27)),
 
     //Monday Night game
-    new Game(Team.Eagles, Team.Falcons, LocalDateTime.of(2015, 9, 14, 19, 10)),
-    new Game(Team.Vikings, Team.FourtyNiners, LocalDateTime.of(2015, 9, 14, 22, 20))
+    new Game(Team.Eagles, Team.Falcons, LocalDateTime.of(2015, 9, 14, 19, 10), Some(Team.Falcons), Some(24), Some(26)),
+    new Game(Team.Vikings, Team.FourtyNiners, LocalDateTime.of(2015, 9, 14, 22, 20), Some(Team.FourtyNiners), Some(3), Some(20))
   )
 
   val week2Games = Seq(

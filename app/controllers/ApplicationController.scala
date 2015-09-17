@@ -1,5 +1,6 @@
 package controllers
 
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 import domain._
@@ -31,7 +32,16 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
 
   def mobileWeekPicks() = Action { request =>
     standardAction(request.session, (currentUser) => {
-      val weekNumber = Week.currentWeek.number + 1 //note: always want to pick for next week
+      val currentWeek = Week.currentWeek
+      implicit val ordering = new DateTimeOrdering()
+      val thursdayGame = Game.getGames(currentWeek).sortBy(x => x.kickoff).head
+
+      val weekAdjustment =
+        CrowleyDateTime.now match {
+          case x if thursdayGame.kickoff.isAfter(x) => 0
+          case _ => 1
+        }
+      val weekNumber = Week.currentWeek.number + weekAdjustment
       Ok(views.html.mobileweekpicks(currentUser, Week.getWeek(weekNumber)))
     })
   }
@@ -121,5 +131,11 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
       case Some(username) => userContext.users.get.find(x => x.username == username)
       case None => None
     }
+  }
+}
+
+class DateTimeOrdering extends Ordering[LocalDateTime] {
+  def compare(x: LocalDateTime, y: LocalDateTime): Int = {
+    x.compareTo(y)
   }
 }

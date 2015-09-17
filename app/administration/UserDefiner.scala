@@ -10,8 +10,8 @@ object UserDefiner {
 
     val users =
       Set(
-        User("mfed", Play.current.configuration.getString("password.mfed").get, "Michael", "Federici", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks("mfed"))),
-        User("ppam", Play.current.configuration.getString("password.ppam").get, "Praveen", "Pamidimukkala", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "ppam"))),
+        User("mfed", Play.current.configuration.getString("password.mfed").get, "Michael", "Federici", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks("mfed"))),
+        User("ppam", Play.current.configuration.getString("password.ppam").get, "Praveen", "Pamidimukkala", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "ppam"))),
         User("RB2", Play.current.configuration.getString("password.RB2").get, "Robert", "Brown", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "RB2"))),
         User("byoungs", Play.current.configuration.getString("password.byoungs").get, "Brian", "Youngs", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "byoungs"))),
         User("Wbricker3", Play.current.configuration.getString("password.Wbricker3").get, "Will", "Bricker", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "Wbricker3"))),
