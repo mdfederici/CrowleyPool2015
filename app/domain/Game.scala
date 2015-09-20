@@ -142,19 +142,19 @@ object Game {
 
   val week2Games = Seq(
     //Thursday Night game
-    new Game(Team.Broncos, Team.Chiefs, LocalDateTime.of(2015, 9, 17, 20, 25)),
+    new Game(Team.Broncos, Team.Chiefs, LocalDateTime.of(2015, 9, 17, 20, 25), Some(Team.Broncos), Some(31), Some(24)),
 
     //1pm games
-    new Game(Team.Texans, Team.Panthers, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.FourtyNiners, Team.Steelers, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Buccaneers, Team.Saints, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Lions, Team.Vikings, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Cardinals, Team.Bears, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Patriots, Team.Bills, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Chargers, Team.Bengals, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Titans, Team.Browns, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Falcons, Team.Giants, LocalDateTime.of(2015, 9, 20, 13, 0)),
-    new Game(Team.Rams, Team.Redskins, LocalDateTime.of(2015, 9, 20, 13, 0)),
+    new Game(Team.Texans, Team.Panthers, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Panthers), Some(17), Some(24)),
+    new Game(Team.FourtyNiners, Team.Steelers, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Steelers), Some(18), Some(43)),
+    new Game(Team.Buccaneers, Team.Saints, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Buccaneers), Some(26), Some(19)),
+    new Game(Team.Lions, Team.Vikings, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Vikings), Some(16), Some(26)),
+    new Game(Team.Cardinals, Team.Bears, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Cardinals), Some(48), Some(23)),
+    new Game(Team.Patriots, Team.Bills, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Patriots), Some(40), Some(32)),
+    new Game(Team.Chargers, Team.Bengals, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Bengals), Some(19), Some(24)),
+    new Game(Team.Titans, Team.Browns, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Browns), Some(14), Some(28)),
+    new Game(Team.Falcons, Team.Giants, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Falcons), Some(24), Some(20)),
+    new Game(Team.Rams, Team.Redskins, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Redskins), Some(10), Some(24)),
 
     //4pm games
     new Game(Team.Dolphins, Team.Jaguars, LocalDateTime.of(2015, 9, 20, 16, 5)),
