@@ -157,9 +157,9 @@ object Game {
     new Game(Team.Rams, Team.Redskins, LocalDateTime.of(2015, 9, 20, 13, 0), Some(Team.Redskins), Some(10), Some(24)),
 
     //4pm games
-    new Game(Team.Dolphins, Team.Jaguars, LocalDateTime.of(2015, 9, 20, 16, 5)),
-    new Game(Team.Ravens, Team.Raiders, LocalDateTime.of(2015, 9, 20, 16, 5)),
-    new Game(Team.Cowboys, Team.Eagles, LocalDateTime.of(2015, 9, 20, 16, 25)),
+    new Game(Team.Dolphins, Team.Jaguars, LocalDateTime.of(2015, 9, 20, 16, 5), Some(Team.Jaguars), Some(20), Some(23)),
+    new Game(Team.Ravens, Team.Raiders, LocalDateTime.of(2015, 9, 20, 16, 5), Some(Team.Raiders), Some(33), Some(37)),
+    new Game(Team.Cowboys, Team.Eagles, LocalDateTime.of(2015, 9, 20, 16, 25), Some(Team.Cowboys), Some(20), Some(10)),
 
     //Sunday Night game
     new Game(Team.Seahawks, Team.Packers, LocalDateTime.of(2015, 9, 20, 20, 30)),
