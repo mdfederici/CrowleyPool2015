@@ -165,7 +165,7 @@ object Game {
     new Game(Team.Seahawks, Team.Packers, LocalDateTime.of(2015, 9, 20, 20, 30), Some(Team.Packers), Some(17), Some(27)),
 
     //Monday Night game
-    new Game(Team.Jets, Team.Colts, LocalDateTime.of(2015, 9, 21, 22, 30))
+    new Game(Team.Jets, Team.Colts, LocalDateTime.of(2015, 9, 21, 22, 30), Some(Team.Jets), Some(20), Some(7))
   )
 
   val week3Games = Seq(
