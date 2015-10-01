@@ -193,7 +193,7 @@ object Game {
     new Game(Team.Broncos, Team.Lions, LocalDateTime.of(2015, 9, 27, 20, 30), Some(Team.Broncos), Some(24), Some(12)),
 
     //Monday Night game
-    new Game(Team.Chiefs, Team.Packers, LocalDateTime.of(2015, 9, 28, 22, 30))
+    new Game(Team.Chiefs, Team.Packers, LocalDateTime.of(2015, 9, 28, 22, 30), Some(Team.Packers), Some(38), Some(28))
   )
 
   val week4Games = Seq(
