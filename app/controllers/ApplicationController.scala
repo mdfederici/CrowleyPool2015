@@ -23,6 +23,12 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
     })
   }
 
+  def sideBets = Action { request =>
+    standardAction(request.session, (currentUser) => {
+      Ok(views.html.sidebets(userContext.users.get))
+    })
+  }
+
   def weekPicks(week: Int) = Action { request =>
     standardAction(request.session, (currentUser) => {
       val targetWeek = Week.getWeek(week)
