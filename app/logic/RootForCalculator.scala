@@ -1,6 +1,6 @@
 package logic
 
-import domain.{WhoShouldIRootFor, Game, User}
+import domain.{WhoShouldIRootForInTheMoney, WhoShouldIRootFor, Game, User}
 
 object RootForCalculator {
   def whoShouldIRootFor(game: Game, currentUser: User, opponent: User) : WhoShouldIRootFor = {
@@ -26,13 +26,24 @@ object RootForCalculator {
     WhoShouldIRootFor(currentWeek, opponent, game, choice, diff)
   }
 
-/*  def whoShouldIRootForForMoney(game: Game, currentUser: User, allUsers: Set[User]) : WhoShouldIRootFor = {
-    val inTheMoneyUsers = UserCalculator.inTheMoneyUsers(allUsers) //todo: this logic for sorting in the money is duplicated.
+  //todo: some duplicated code here
+  def whoShouldIRootForForMoney(game: Game, currentUser: User, allUsers: Set[User]) : WhoShouldIRootForInTheMoney = {
+    val currentWeek = Game.getWeek(game)
+    val myPick = currentUser.pick(currentWeek, game)
+
+    val inTheMoneyUsers = UserCalculator.inTheMoneyUsers(allUsers)
     val rootFors = inTheMoneyUsers.map(x => whoShouldIRootFor(game, currentUser, x))
     val totalDiff = rootFors.map(x => x.diff).sum
-    totalDiff match {
-      case
-    }
-  }*/
 
+    val choice =
+      totalDiff match {
+        case x if x < 0 => myPick.selectedTeam  match {
+          case h if h == game.homeTeam => game.awayTeam
+          case a if a == game.awayTeam => game.homeTeam
+        }
+        case _ => myPick.selectedTeam
+      }
+
+    WhoShouldIRootForInTheMoney(currentWeek, inTheMoneyUsers, game, choice, totalDiff)
+  }
 }

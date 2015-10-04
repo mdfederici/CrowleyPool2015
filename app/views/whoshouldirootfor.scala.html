@@ -1,9 +1,11 @@
-@import domain.{Game, User, Week}
-@import logic.{StandingsCalculator, TableUtilities}
-@import domain.WhoShouldIRootFor
-@(users: Set[User], currentUser: User, currentWeek: Week, vsUser: Option[(User,Seq[WhoShouldIRootFor])])
+@import domain._
+@import logic.TableUtilities
+
+@import logic.UserCalculator
+@(users: Set[User], currentUser: User, currentWeek: Week, vsUser: Option[(User,Seq[WhoShouldIRootFor])], vsMoney: Option[Seq[WhoShouldIRootForInTheMoney]])
 
 @main {
+    <a href="/weekSummary?week=@currentWeek.number">Back to week summary</a><br/>
     <a href="/whoShouldIRootFor?week=@currentWeek.number">Who should I root for vs the money?</a><br/>
     @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>
         <div class="center" style="float: left">
@@ -33,7 +35,60 @@
     }
     <div class="center" style="float: left">
         @if(vsUser.isEmpty) {
-            <div>vs the money</div>
+            @defining(vsMoney.get) { vsMoneySeq =>
+                <table class="table is-striped has-hover table-height-logoscore table-cursor-default">
+                    <thead>
+                        <tr>
+                            <th class="table-height-fixedheader">Game</th>
+                            <th class="table-height-fixedheader">Your Pick</th>
+                            @for(moneyUser <- UserCalculator.inTheMoneyUsers(users)) {
+                                <th class="table-height-fixedheader">@moneyUser Pick</th>
+                            }
+                            <th class="table-height-fixedheader">You Should Root For</th>
+                            <th class="table-height-fixedheader">Will Result In Net Gain Of</th>
+                            <th class="table-height-fixedheader">Will Result In Opponent Loss Of</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @defining({
+                            val gainsAndOpponentLosses = vsMoneySeq.partition(x => x.diff >= 0)
+                            val gains = gainsAndOpponentLosses._1.sortBy(x => x.diff).reverse
+                            val opponentLosses = gainsAndOpponentLosses._2.sortBy(x => Math.abs(x.diff)).reverse
+                            gains ++ opponentLosses
+                        }) { sortedGainsAndLosses =>
+                            @for(root <- sortedGainsAndLosses) {
+                                <tr>
+                                    <td>@root.game.shortString</td>
+                                    <td>
+                                    @defining(currentUser.pick(currentWeek, root.game)) { pick =>
+                                        <img src="@routes.Assets.at(pick.selectedTeam.logoPath)" alt="@pick.selectedTeam.abbreviation" class="logo-small">
+                                        @pick.confidence.rating
+                                    }
+                                    </td>
+                                    @for(moneyUser <- UserCalculator.inTheMoneyUsers(users)) {
+                                        @defining(moneyUser.pick(currentWeek, root.game)) { pick =>
+                                            <td>
+                                                <img src="@routes.Assets.at(pick.selectedTeam.logoPath)" alt="@pick.selectedTeam.abbreviation" class="logo-small">
+                                                @pick.confidence.rating
+                                            </td>
+                                        }
+                                    }
+                                    <td>
+                                        <img src="@routes.Assets.at(root.rootFor.logoPath)" alt="@root.rootFor.abbreviation" class="logo-small">
+                                    </td>
+                                    @if(root.diff >= 0){
+                                        <td>@root.diff</td>
+                                        <td>-</td>
+                                    } else {
+                                        <td>-</td>
+                                        <td>@Math.abs(root.diff)</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
         } else {
             @defining(vsUser.get) { vsUserTuple =>
                 <table class="table is-striped has-hover table-height-logoscore table-cursor-default">

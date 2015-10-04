@@ -115,14 +115,23 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
       val vsUser =
         username match {
           case None => None
-          case Some(u) =>{
+          case Some(u) => {
             val user = userContext.users.get.find(x => x.username.equalsIgnoreCase(u)).get
             val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootFor(x, currentUser, user))
             Some((user, rootFor))
           }
         }
 
-      Ok(views.html.whoshouldirootfor(userContext.users.get, currentUser, targetWeek, vsUser))
+      val vsMoney =
+        username match {
+          case None => {
+            val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootForForMoney(x, currentUser, userContext.users.get))
+            Some(rootFor)
+          }
+          case Some(u) => None
+        }
+
+      Ok(views.html.whoshouldirootfor(userContext.users.get, currentUser, targetWeek, vsUser, vsMoney))
     })
   }
 
