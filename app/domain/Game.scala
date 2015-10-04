@@ -211,10 +211,10 @@ object Game {
     new Game(Team.Chiefs, Team.Bengals, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Bengals), Some(21), Some(36)),
 
     //4pm games
-    new Game(Team.Browns, Team.Chargers, LocalDateTime.of(2015, 10, 4, 16, 5)),
-    new Game(Team.Packers, Team.FourtyNiners, LocalDateTime.of(2015, 10, 4, 16, 25)),
-    new Game(Team.Rams, Team.Cardinals, LocalDateTime.of(2015, 10, 4, 16, 25)),
-    new Game(Team.Vikings, Team.Broncos, LocalDateTime.of(2015, 10, 4, 16, 25)),
+    new Game(Team.Browns, Team.Chargers, LocalDateTime.of(2015, 10, 4, 16, 5), Some(Team.Chargers), Some(27), Some(30)),
+    new Game(Team.Packers, Team.FourtyNiners, LocalDateTime.of(2015, 10, 4, 16, 25), Some(Team.Packers), Some(17), Some(3)),
+    new Game(Team.Rams, Team.Cardinals, LocalDateTime.of(2015, 10, 4, 16, 25), Some(Team.Rams), Some(24), Some(22)),
+    new Game(Team.Vikings, Team.Broncos, LocalDateTime.of(2015, 10, 4, 16, 25), Some(Team.Broncos), Some(20), Some(23)),
 
     //Sunday Night game
     new Game(Team.Cowboys, Team.Saints, LocalDateTime.of(2015, 10, 4, 20, 30)),
