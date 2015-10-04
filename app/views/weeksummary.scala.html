@@ -3,14 +3,9 @@
 @(users: Set[User], currentWeek: Week, currentUser: User)
 
 @main {
-    <script>
-        $(function() {
-            $('.js-tooltip').tooltip();
-        });
-    </script>
-
     <a href="/seasonSummary">Season Summary</a><br/>
-    <a href="/weekPicks?week=@currentWeek.number">Your Week @currentWeek.number Picks</a>
+    <a href="/weekPicks?week=@currentWeek.number">Your Week @currentWeek.number Picks</a><br/>
+    <a href="/whoShouldIRootFor?week=@currentWeek.number">Who should I root for right now?</a>
 
 
     @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>

@@ -5,9 +5,11 @@ import javax.inject.Inject
 
 import domain._
 import domain.data.PickRepository
+import logic.RootForCalculator
 import play.api.mvc._
 
 class ApplicationController @Inject() (userContext: UserContext, repository: PickRepository) extends Controller {
+
   if(userContext.users.isEmpty)
     userContext.refreshUsers()
 
@@ -104,6 +106,32 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
 
       userContext.refreshUsers()
       Ok("ok")
+    })
+  }
+
+  def whoShouldIRootFor(week: Int, username: Option[String]) = Action { request =>
+    standardAction(request.session, (currentUser) => {
+      val targetWeek = Week.getWeek(week)
+      val vsUser =
+        username match {
+          case None => None
+          case Some(u) => {
+            val user = userContext.users.get.find(x => x.username.equalsIgnoreCase(u)).get
+            val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootFor(x, currentUser, user))
+            Some((user, rootFor))
+          }
+        }
+
+      val vsMoney =
+        username match {
+          case None => {
+            val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootForForMoney(x, currentUser, userContext.users.get))
+            Some(rootFor)
+          }
+          case Some(u) => None
+        }
+
+      Ok(views.html.whoshouldirootfor(userContext.users.get, currentUser, targetWeek, vsUser, vsMoney))
     })
   }
 
