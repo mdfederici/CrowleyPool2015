@@ -204,10 +204,10 @@ object Game {
     new Game(Team.Jets, Team.Dolphins, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Jets), Some(27), Some(14)),
     new Game(Team.Jaguars, Team.Colts, LocalDateTime.of(2015, 10, 4, 13, 0)),
     new Game(Team.Giants, Team.Bills, LocalDateTime.of(2015, 10, 4, 13, 0)),
-    new Game(Team.Panthers, Team.Buccaneers, LocalDateTime.of(2015, 10, 4, 13, 0)),
-    new Game(Team.Eagles, Team.Redskins, LocalDateTime.of(2015, 10, 4, 13, 0)),
+    new Game(Team.Panthers, Team.Buccaneers, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Panthers), Some(37), Some(23)),
+    new Game(Team.Eagles, Team.Redskins, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Redskins), Some(20), Some(23)),
     new Game(Team.Raiders, Team.Bears, LocalDateTime.of(2015, 10, 4, 13, 0)),
-    new Game(Team.Texans, Team.Falcons, LocalDateTime.of(2015, 10, 4, 13, 0)),
+    new Game(Team.Texans, Team.Falcons, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Falcons), Some(21), Some(42)),
     new Game(Team.Chiefs, Team.Bengals, LocalDateTime.of(2015, 10, 4, 13, 0)),
 
     //4pm games
