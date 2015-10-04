@@ -52,9 +52,9 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
     standardAction(request.session, (currentUser) => {
       val targetWeek = Week.getWeek(week)
 
-      currentUser.picks(targetWeek).count(x => x.isLocked) match {
-        case x if x > 0 => Ok(views.html.weeksummary(userContext.users.get, targetWeek, currentUser))
-        case _ => Ok(views.html.weekpicks(currentUser, targetWeek))
+      currentUser.picks(targetWeek).exists(x => x.isLocked) match {
+        case true => Ok(views.html.weeksummary(userContext.users.get, targetWeek, currentUser))
+        case false => Ok(views.html.weekpicks(currentUser, targetWeek))
       }
     })
   }
@@ -112,26 +112,32 @@ class ApplicationController @Inject() (userContext: UserContext, repository: Pic
   def whoShouldIRootFor(week: Int, username: Option[String]) = Action { request =>
     standardAction(request.session, (currentUser) => {
       val targetWeek = Week.getWeek(week)
-      val vsUser =
-        username match {
-          case None => None
-          case Some(u) => {
-            val user = userContext.users.get.find(x => x.username.equalsIgnoreCase(u)).get
-            val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootFor(x, currentUser, user))
-            Some((user, rootFor))
-          }
-        }
 
-      val vsMoney =
-        username match {
-          case None => {
-            val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootForForMoney(x, currentUser, userContext.users.get))
-            Some(rootFor)
-          }
-          case Some(u) => None
-        }
+      currentUser.picks(targetWeek).exists(x => x.isLocked) match {
+        case true => {
+          val vsUser =
+            username match {
+              case None => None
+              case Some(u) => {
+                val user = userContext.users.get.find(x => x.username.equalsIgnoreCase(u)).get
+                val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootFor(x, currentUser, user))
+                Some((user, rootFor.filter(x => x.game.winner.isEmpty)))
+              }
+            }
 
-      Ok(views.html.whoshouldirootfor(userContext.users.get, currentUser, targetWeek, vsUser, vsMoney))
+          val vsMoney =
+            username match {
+              case None => {
+                val rootFor = Game.getGames(targetWeek).map(x => RootForCalculator.whoShouldIRootForForMoney(x, currentUser, userContext.users.get))
+                Some(rootFor.filter(x => x.game.winner.isEmpty))
+              }
+              case Some(u) => None
+            }
+
+          Ok(views.html.whoshouldirootfor(userContext.users.get, currentUser, targetWeek, vsUser, vsMoney))
+        }
+        case false => Ok(views.html.weekpicks(currentUser, targetWeek))
+      }
     })
   }
 
