@@ -202,13 +202,13 @@ object Game {
 
     //1pm games
     new Game(Team.Jets, Team.Dolphins, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Jets), Some(27), Some(14)),
-    new Game(Team.Jaguars, Team.Colts, LocalDateTime.of(2015, 10, 4, 13, 0)),
-    new Game(Team.Giants, Team.Bills, LocalDateTime.of(2015, 10, 4, 13, 0)),
+    new Game(Team.Jaguars, Team.Colts, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Colts), Some(13), Some(16)),
+    new Game(Team.Giants, Team.Bills, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Giants), Some(24), Some(10)),
     new Game(Team.Panthers, Team.Buccaneers, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Panthers), Some(37), Some(23)),
     new Game(Team.Eagles, Team.Redskins, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Redskins), Some(20), Some(23)),
-    new Game(Team.Raiders, Team.Bears, LocalDateTime.of(2015, 10, 4, 13, 0)),
-    new Game(Team.Texans, Team.Falcons, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Falcons), Some(21), Some(42)),
-    new Game(Team.Chiefs, Team.Bengals, LocalDateTime.of(2015, 10, 4, 13, 0)),
+    new Game(Team.Raiders, Team.Bears, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Bears), Some(20), Some(22)),
+    new Game(Team.Texans, Team.Falcons, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Falcons), Some(21), Some(48)),
+    new Game(Team.Chiefs, Team.Bengals, LocalDateTime.of(2015, 10, 4, 13, 0), Some(Team.Bengals), Some(21), Some(36)),
 
     //4pm games
     new Game(Team.Browns, Team.Chargers, LocalDateTime.of(2015, 10, 4, 16, 5)),
