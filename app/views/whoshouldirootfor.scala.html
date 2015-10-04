@@ -1,0 +1,90 @@
+@import domain.{Game, User, Week}
+@import logic.{StandingsCalculator, TableUtilities}
+@import domain.WhoShouldIRootFor
+@(users: Set[User], currentUser: User, currentWeek: Week, vsUser: Option[(User,Seq[WhoShouldIRootFor])])
+
+@main {
+    <a href="/whoShouldIRootFor?week=@currentWeek.number">Who should I root for vs the money?</a><br/>
+    @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>
+        <div class="center" style="float: left">
+            <div class="col large-3">
+                <table class="table is-striped has-hover table-height-logoscore table-cursor-default">
+                    <thead>
+                        <tr>
+                            <th class="table-height-fixedheader">User</th>
+                            <th class="table-height-fixedheader">Current Total Points</th>
+                            <th class="table-height-fixedheader">Who Should I Root For?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(i: Int <- sortedUsers.indices) {
+                            @defining(sortedUsers(i)) { user =>
+                                <tr>
+                                    <td class="@TableUtilities.inTheMoney(i)">@user</td>
+                                    <td class="js-tooltip" title="@user.record()">@user.metaData.pointsEarned()</td>
+                                    <td><a href="/whoShouldIRootFor?week=@currentWeek.number&username=@user.username">vs @user</a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    <div class="center" style="float: left">
+        @if(vsUser.isEmpty) {
+            <div>vs the money</div>
+        } else {
+            @defining(vsUser.get) { vsUserTuple =>
+                <table class="table is-striped has-hover table-height-logoscore table-cursor-default">
+                    <thead>
+                        <tr>
+                            <th class="table-height-fixedheader">Game</th>
+                            <th class="table-height-fixedheader">Your Pick</th>
+                            <th class="table-height-fixedheader">@vsUserTuple._1 Pick</th>
+                            <th class="table-height-fixedheader">You Should Root For</th>
+                            <th class="table-height-fixedheader">Will Result In Gain Of</th>
+                            <th class="table-height-fixedheader">Will Result In Opponent Loss Of</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @defining({
+                            val gainsAndOpponentLosses = vsUserTuple._2.partition(x => x.diff >= 0)
+                            val gains = gainsAndOpponentLosses._1.sortBy(x => x.diff).reverse
+                            val opponentLosses = gainsAndOpponentLosses._2.sortBy(x => Math.abs(x.diff)).reverse
+                            gains ++ opponentLosses
+                        }) { sortedTuples =>
+                            @for(root <- sortedTuples) {
+                                <tr>
+                                    <td>@root.game.shortString</td>
+                                    <td>
+                                        @defining(currentUser.pick(currentWeek, root.game)) { pick =>
+                                            <img src="@routes.Assets.at(pick.selectedTeam.logoPath)" alt="@pick.selectedTeam.abbreviation" class="logo-small">
+                                            @pick.confidence.rating
+                                        }
+                                    </td>
+                                    <td>
+                                        @defining(root.opponent.pick(currentWeek, root.game)) { pick =>
+                                            <img src="@routes.Assets.at(pick.selectedTeam.logoPath)" alt="@pick.selectedTeam.abbreviation" class="logo-small">
+                                            @pick.confidence.rating
+                                        }
+                                    </td>
+                                    <td>
+                                        <img src="@routes.Assets.at(root.rootFor.logoPath)" alt="@root.rootFor.abbreviation" class="logo-small">
+                                    </td>
+                                    @if(root.diff >= 0){
+                                        <td>@root.diff</td>
+                                        <td>-</td>
+                                    } else {
+                                        <td>-</td>
+                                        <td>@Math.abs(root.diff)</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}
