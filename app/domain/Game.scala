@@ -283,10 +283,10 @@ object Game {
     new Game(Team.Bills, Team.Jaguars, LocalDateTime.of(2015, 10, 25, 9, 30), Some(Team.Jaguars), Some(31), Some(34)),
     new Game(Team.Buccaneers, Team.Redskins, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Redskins), Some(30), Some(31)),
     new Game(Team.Falcons, Team.Titans, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Falcons), Some(10), Some(7)),
-    new Game(Team.Saints, Team.Colts, LocalDateTime.of(2015, 10, 25, 13, 0)),
+    new Game(Team.Saints, Team.Colts, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Saints), Some(27), Some(21)),
     new Game(Team.Vikings, Team.Lions, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Vikings), Some(28), Some(19)),
     new Game(Team.Steelers, Team.Chiefs, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Chiefs), Some(13), Some(23)),
-    new Game(Team.Browns, Team.Rams, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Raiders), Some(6), Some(24)),
+    new Game(Team.Browns, Team.Rams, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Rams), Some(6), Some(24)),
     new Game(Team.Texans, Team.Dolphins, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Dolphins), Some(26), Some(44)),
     new Game(Team.Jets, Team.Patriots, LocalDateTime.of(2015, 10, 25, 13, 0), Some(Team.Patriots), Some(23), Some(30)),
 
