@@ -332,13 +332,13 @@ object Game {
     new Game(Team.Browns, Team.Bengals, LocalDateTime.of(2015, 11, 5, 20, 25), Some(Team.Bengals), Some(10), Some(31)),
 
     //1pm games
-    new Game(Team.Packers, Team.Panthers, LocalDateTime.of(2015, 11, 8, 13, 0)),
+    new Game(Team.Packers, Team.Panthers, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Panthers), Some(29), Some(37)),
     new Game(Team.Redskins, Team.Patriots, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Patriots), Some(10), Some(27)),
     new Game(Team.Titans, Team.Saints, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Titans), Some(34), Some(28)),
     new Game(Team.Dolphins, Team.Bills, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Bills), Some(17), Some(33)),
     new Game(Team.Rams, Team.Vikings, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Vikings), Some(18), Some(21)),
     new Game(Team.Jaguars, Team.Jets, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Jets), Some(23), Some(28)),
-    new Game(Team.Raiders, Team.Steelers, LocalDateTime.of(2015, 11, 8, 13, 0)),
+    new Game(Team.Raiders, Team.Steelers, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Steelers), Some(35), Some(38)),
 
     //4pm games
     new Game(Team.Giants, Team.Buccaneers, LocalDateTime.of(2015, 11, 8, 16, 5)),
