@@ -341,9 +341,9 @@ object Game {
     new Game(Team.Raiders, Team.Steelers, LocalDateTime.of(2015, 11, 8, 13, 0), Some(Team.Steelers), Some(35), Some(38)),
 
     //4pm games
-    new Game(Team.Giants, Team.Buccaneers, LocalDateTime.of(2015, 11, 8, 16, 5)),
-    new Game(Team.Falcons, Team.FourtyNiners, LocalDateTime.of(2015, 11, 8, 16, 5)),
-    new Game(Team.Broncos, Team.Colts, LocalDateTime.of(2015, 11, 8, 16, 25)),
+    new Game(Team.Giants, Team.Buccaneers, LocalDateTime.of(2015, 11, 8, 16, 5), Some(Team.Giants), Some(32), Some(18)),
+    new Game(Team.Falcons, Team.FourtyNiners, LocalDateTime.of(2015, 11, 8, 16, 5), Some(Team.FourtyNiners), Some(16), Some(17)),
+    new Game(Team.Broncos, Team.Colts, LocalDateTime.of(2015, 11, 8, 16, 25), Some(Team.Colts), Some(24), Some(27)),
 
     //Sunday Night game
     new Game(Team.Eagles, Team.Cowboys, LocalDateTime.of(2015, 11, 8, 20, 30)),
