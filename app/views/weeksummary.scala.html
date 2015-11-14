@@ -10,7 +10,8 @@
     </script>
 
     <a href="/seasonSummary">Season Summary</a><br/>
-    <a href="/weekPicks?week=@currentWeek.number">Your Week @currentWeek.number Picks</a>
+    <a href="/weekPicks?week=@currentWeek.number">Your Week @currentWeek.number Picks</a><br/>
+    <a href="/sideBets">Side Bets</a>
 
 
     @defining(users.toSeq.sortBy(x => x.metaData.pointsEarned()).reverse) { sortedUsers =>
