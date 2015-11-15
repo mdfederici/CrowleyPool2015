@@ -357,14 +357,14 @@ object Game {
     new Game(Team.Bills, Team.Jets, LocalDateTime.of(2015, 11, 12, 20, 25), Some(Team.Bills), Some(22), Some(17)),
 
     //1pm games
-    new Game(Team.Lions, Team.Packers, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Cowboys, Team.Buccaneers, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Panthers, Team.Titans, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Bears, Team.Rams, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Saints, Team.Redskins, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Dolphins, Team.Eagles, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Browns, Team.Steelers, LocalDateTime.of(2015, 11, 15, 13, 0)),
-    new Game(Team.Jaguars, Team.Ravens, LocalDateTime.of(2015, 11, 15, 13, 0)),
+    new Game(Team.Lions, Team.Packers, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Lions), Some(18), Some(16)),
+    new Game(Team.Cowboys, Team.Buccaneers, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Buccaneers), Some(6), Some(10)),
+    new Game(Team.Panthers, Team.Titans, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Panthers), Some(27), Some(10)),
+    new Game(Team.Bears, Team.Rams, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Bears), Some(37), Some(13)),
+    new Game(Team.Saints, Team.Redskins, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Redskins), Some(14), Some(47)),
+    new Game(Team.Dolphins, Team.Eagles, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Dolphins), Some(20), Some(19)),
+    new Game(Team.Browns, Team.Steelers, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Steelers), Some(9), Some(30)),
+    new Game(Team.Jaguars, Team.Ravens, LocalDateTime.of(2015, 11, 15, 13, 0), Some(Team.Jaguars), Some(22), Some(20)),
 
     //4pm games
     new Game(Team.Vikings, Team.Raiders, LocalDateTime.of(2015, 11, 15, 16, 5)),
