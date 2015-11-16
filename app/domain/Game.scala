@@ -372,7 +372,7 @@ object Game {
     new Game(Team.Chiefs, Team.Broncos, LocalDateTime.of(2015, 11, 15, 16, 25), Some(Team.Chiefs), Some(29), Some(13)),
 
     //Sunday Night game
-    new Game(Team.Cardinals, Team.Seahawks, LocalDateTime.of(2015, 11, 15, 20, 30)),
+    new Game(Team.Cardinals, Team.Seahawks, LocalDateTime.of(2015, 11, 15, 20, 30), Some(Team.Cardinals), Some(39), Some(32)),
 
     //Monday Night game
     new Game(Team.Texans, Team.Bengals, LocalDateTime.of(2015, 11, 16, 22, 30))
