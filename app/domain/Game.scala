@@ -383,17 +383,17 @@ object Game {
     new Game(Team.Titans, Team.Jaguars, LocalDateTime.of(2015, 11, 19, 20, 25), Some(Team.Jaguars), Some(13), Some(19)),
 
     //1pm games
-    new Game(Team.Raiders, Team.Lions, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Colts, Team.Falcons, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Jets, Team.Texans, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Buccaneers, Team.Eagles, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Broncos, Team.Bears, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Packers, Team.Vikings, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Rams, Team.Ravens, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Cowboys, Team.Dolphins, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Redskins, Team.Panthers, LocalDateTime.of(2015, 11, 22, 13, 0)),
+    new Game(Team.Raiders, Team.Lions, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Lions), Some(13), Some(18)),
+    new Game(Team.Colts, Team.Falcons, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Colts), Some(24), Some(21)),
+    new Game(Team.Jets, Team.Texans, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Texans), Some(17), Some(24)),
+    new Game(Team.Buccaneers, Team.Eagles, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Buccaneers), Some(45), Some(17)),
+    new Game(Team.Broncos, Team.Bears, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Broncos), Some(17), Some(15)),
+    new Game(Team.Rams, Team.Ravens, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Ravens), Some(13), Some(16)),
+    new Game(Team.Cowboys, Team.Dolphins, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Cowboys), Some(24), Some(14)),
+    new Game(Team.Redskins, Team.Panthers, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Panthers), Some(16), Some(44)),
 
     //4pm games
+    new Game(Team.Packers, Team.Vikings, LocalDateTime.of(2015, 11, 22, 13, 0)),
     new Game(Team.Bengals, Team.Cardinals, LocalDateTime.of(2015, 11, 22, 16, 5)),
     new Game(Team.FourtyNiners, Team.Seahawks, LocalDateTime.of(2015, 11, 22, 16, 25)),
 
