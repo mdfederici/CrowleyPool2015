@@ -393,12 +393,12 @@ object Game {
     new Game(Team.Redskins, Team.Panthers, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Panthers), Some(16), Some(44)),
 
     //4pm games
-    new Game(Team.Packers, Team.Vikings, LocalDateTime.of(2015, 11, 22, 13, 0)),
-    new Game(Team.Bengals, Team.Cardinals, LocalDateTime.of(2015, 11, 22, 16, 5)),
-    new Game(Team.FourtyNiners, Team.Seahawks, LocalDateTime.of(2015, 11, 22, 16, 25)),
+    new Game(Team.Packers, Team.Vikings, LocalDateTime.of(2015, 11, 22, 13, 0), Some(Team.Packers), Some(30), Some(13)),
+    new Game(Team.Chiefs, Team.Chargers, LocalDateTime.of(2015, 11, 22, 20, 30), Some(Team.Chiefs), Some(33), Some(3)),
+    new Game(Team.FourtyNiners, Team.Seahawks, LocalDateTime.of(2015, 11, 22, 16, 25), Some(Team.Seahawks), Some(13), Some(29)),
 
     //Sunday Night game
-    new Game(Team.Chiefs, Team.Chargers, LocalDateTime.of(2015, 11, 22, 20, 30)),
+    new Game(Team.Bengals, Team.Cardinals, LocalDateTime.of(2015, 11, 22, 16, 5)),
 
     //Monday Night game
     new Game(Team.Bills, Team.Patriots, LocalDateTime.of(2015, 11, 23, 22, 30))
