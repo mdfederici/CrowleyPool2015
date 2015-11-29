@@ -411,15 +411,15 @@ object Game {
     new Game(Team.Bears, Team.Packers, LocalDateTime.of(2015, 11, 26, 22, 30), Some(Team.Bears), Some(17), Some(13)),
 
     //1pm games
-    new Game(Team.Saints, Team.Texans, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Rams, Team.Bengals, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Vikings, Team.Falcons, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Giants, Team.Redskins, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Buccaneers, Team.Colts, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Bills, Team.Chiefs, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Raiders, Team.Titans, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Chargers, Team.Jaguars, LocalDateTime.of(2015, 11, 29, 13, 0)),
-    new Game(Team.Dolphins, Team.Jets, LocalDateTime.of(2015, 11, 29, 13, 0)),
+    new Game(Team.Saints, Team.Texans, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Texans), Some(6), Some(24)),
+    new Game(Team.Rams, Team.Bengals, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Bengals), Some(7), Some(31)),
+    new Game(Team.Vikings, Team.Falcons, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Vikings), Some(20), Some(10)),
+    new Game(Team.Giants, Team.Redskins, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Redskins), Some(14), Some(20)),
+    new Game(Team.Buccaneers, Team.Colts, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Colts), Some(12), Some(25)),
+    new Game(Team.Bills, Team.Chiefs, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Chiefs), Some(22), Some(30)),
+    new Game(Team.Raiders, Team.Titans, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Raiders), Some(24), Some(21)),
+    new Game(Team.Chargers, Team.Jaguars, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Chargers), Some(31), Some(25)),
+    new Game(Team.Dolphins, Team.Jets, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Jets), Some(38), Some(20)),
 
     //4pm games
     new Game(Team.Cardinals, Team.FourtyNiners, LocalDateTime.of(2015, 11, 29, 16, 5)),
