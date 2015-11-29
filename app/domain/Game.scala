@@ -398,17 +398,17 @@ object Game {
     new Game(Team.FourtyNiners, Team.Seahawks, LocalDateTime.of(2015, 11, 22, 16, 25), Some(Team.Seahawks), Some(13), Some(29)),
 
     //Sunday Night game
-    new Game(Team.Bengals, Team.Cardinals, LocalDateTime.of(2015, 11, 22, 16, 5)),
+    new Game(Team.Bengals, Team.Cardinals, LocalDateTime.of(2015, 11, 22, 16, 5), Some(Team.Cardinals), Some(34), Some(31)),
 
     //Monday Night game
-    new Game(Team.Bills, Team.Patriots, LocalDateTime.of(2015, 11, 23, 22, 30))
+    new Game(Team.Bills, Team.Patriots, LocalDateTime.of(2015, 11, 23, 22, 30), Some(Team.Patriots), Some(20), Some(13))
   )
 
   val week12Games = Seq(
     //Thursday Night game
-    new Game(Team.Eagles, Team.Lions, LocalDateTime.of(2015, 11, 26, 12, 30)),
-    new Game(Team.Panthers, Team.Cowboys, LocalDateTime.of(2015, 11, 26, 16, 30)),
-    new Game(Team.Bears, Team.Packers, LocalDateTime.of(2015, 11, 26, 22, 30)),
+    new Game(Team.Eagles, Team.Lions, LocalDateTime.of(2015, 11, 26, 12, 30), Some(Team.Lions), Some(14), Some(45)),
+    new Game(Team.Panthers, Team.Cowboys, LocalDateTime.of(2015, 11, 26, 16, 30), Some(Team.Panthers), Some(33), Some(14)),
+    new Game(Team.Bears, Team.Packers, LocalDateTime.of(2015, 11, 26, 22, 30), Some(Team.Bears), Some(17), Some(13)),
 
     //1pm games
     new Game(Team.Saints, Team.Texans, LocalDateTime.of(2015, 11, 29, 13, 0)),
