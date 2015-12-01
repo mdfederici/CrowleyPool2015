@@ -422,11 +422,11 @@ object Game {
     new Game(Team.Dolphins, Team.Jets, LocalDateTime.of(2015, 11, 29, 13, 0), Some(Team.Jets), Some(38), Some(20)),
 
     //4pm games
-    new Game(Team.Cardinals, Team.FourtyNiners, LocalDateTime.of(2015, 11, 29, 16, 5)),
-    new Game(Team.Steelers, Team.Seahawks, LocalDateTime.of(2015, 11, 29, 16, 25)),
+    new Game(Team.Cardinals, Team.FourtyNiners, LocalDateTime.of(2015, 11, 29, 16, 5), Some(Team.Cardinals), Some(19), Some(13)),
+    new Game(Team.Steelers, Team.Seahawks, LocalDateTime.of(2015, 11, 29, 16, 25), Some(Team.Seahawks), Some(30), Some(39)),
 
     //Sunday Night game
-    new Game(Team.Patriots, Team.Broncos, LocalDateTime.of(2015, 11, 29, 20, 30)),
+    new Game(Team.Patriots, Team.Broncos, LocalDateTime.of(2015, 11, 29, 20, 30), Some(Team.Broncos), Some(24), Some(30)),
 
     //Monday Night game
     new Game(Team.Ravens, Team.Browns, LocalDateTime.of(2015, 11, 30, 22, 30))
