@@ -16,7 +16,7 @@ object UserDefiner {
         User("byoungs", Play.current.configuration.getString("password.byoungs").get, "Brian", "Youngs", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "byoungs"))),
         User("Wbricker3", Play.current.configuration.getString("password.Wbricker3").get, "Will", "Bricker", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "Wbricker3"))),
         User("jamesflorio13", Play.current.configuration.getString("password.jamesflorio13").get, "James", "Florio", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "jamesflorio13"))),
-        User("ADG", Play.current.configuration.getString("password.ADG").get, "Allan", "DGracia", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "ADG"))),
+        User("ADG", Play.current.configuration.getString("password.ADG").get, "Allan", "DGracia", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "ADG"))),
         User("dcrowley", Play.current.configuration.getString("password.dcrowley").get, "Daniel", "Crowley", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "dcrowley"))),
         User("Rmacnamara", Play.current.configuration.getString("password.Rmacnamara").get, "Ryan", "MacNamara", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "Rmacnamara"))),
         User("LeaveYourFriendsBehind", Play.current.configuration.getString("password.LeaveYourFriendsBehind").get, "Peter", "Bridgers", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "LeaveYourFriendsBehind"))),
