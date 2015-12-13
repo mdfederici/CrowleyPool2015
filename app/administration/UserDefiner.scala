@@ -13,7 +13,7 @@ object UserDefiner {
         User("mfed", Play.current.configuration.getString("password.mfed").get, "Michael", "Federici", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks("mfed"))),
         User("ppam", Play.current.configuration.getString("password.ppam").get, "Praveen", "Pamidimukkala", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "ppam"))),
         User("RB2", Play.current.configuration.getString("password.RB2").get, "Robert", "Brown", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "RB2"))),
-        User("byoungs", Play.current.configuration.getString("password.byoungs").get, "Brian", "Youngs", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "byoungs"))),
+        User("byoungs", Play.current.configuration.getString("password.byoungs").get, "Brian", "Youngs", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "byoungs"))),
         User("Wbricker3", Play.current.configuration.getString("password.Wbricker3").get, "Will", "Bricker", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "Wbricker3"))),
         User("jamesflorio13", Play.current.configuration.getString("password.jamesflorio13").get, "James", "Florio", hasPaidEntry = false, DataGenerator.makeUserMetaData(allPicks( "jamesflorio13"))),
         User("ADG", Play.current.configuration.getString("password.ADG").get, "Allan", "DGracia", hasPaidEntry = true, DataGenerator.makeUserMetaData(allPicks( "ADG"))),
